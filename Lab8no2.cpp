@@ -41,3 +41,4 @@ int countCorrectQ1(char ans[][10], int numStudents) {
             count++;
     return count;
 }
+
