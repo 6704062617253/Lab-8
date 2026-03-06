@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int checkscore(char std[]);
+int countCorrectQ1(char ans[][10], int numStudents);
 
 char keys[10] = {'D','B','D','C','C','D','A','E','A','D'};
 
@@ -20,6 +21,8 @@ int main() {
     for (i = 0; i < 8; i++)
         printf("std %d => %d\n", (i+1), checkscore(ans[i]));
 
+    printf("Q1 correct: %d\n", countCorrectQ1(ans, 8));
+
     return 0;
 }
 
@@ -29,4 +32,12 @@ int checkscore(char std[]) {
         if (std[i] == keys[i])
             score++;
     return score;
+}
+
+int countCorrectQ1(char ans[][10], int numStudents) {
+    int count = 0, i;
+    for (i = 0; i < numStudents; i++)
+        if (ans[i][0] == keys[0])
+            count++;
+    return count;
 }
