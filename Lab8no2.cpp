@@ -2,6 +2,7 @@
 
 int checkscore(char std[]);
 int countCorrectQ1(char ans[][10], int numStudents);
+int hardestQuestion(char ans[][10], int numStudents);
 
 char keys[10] = {'D','B','D','C','C','D','A','E','A','D'};
 
@@ -22,6 +23,7 @@ int main() {
         printf("std %d => %d\n", (i+1), checkscore(ans[i]));
 
     printf("Q1 correct: %d\n", countCorrectQ1(ans, 8));
+    printf("Hardest question: Q%d\n", hardestQuestion(ans, 8) + 1);
 
     return 0;
 }
@@ -42,3 +44,18 @@ int countCorrectQ1(char ans[][10], int numStudents) {
     return count;
 }
 
+int hardestQuestion(char ans[][10], int numStudents) {
+    int correctCount[10] = {0};
+    int i, j, minIdx = 0;
+
+    for (i = 0; i < numStudents; i++)
+        for (j = 0; j < 10; j++)
+            if (ans[i][j] == keys[j])
+                correctCount[j]++;
+
+    for (j = 1; j < 10; j++)
+        if (correctCount[j] < correctCount[minIdx])
+            minIdx = j;
+
+    return minIdx;
+}
